@@ -11,7 +11,9 @@ FollowGuard is a powerful web tool that allows you to analyze your Instagram fol
 
 For a complete walkthrough of how to use FollowGuard, watch our YouTube tutorial:
 
-<div align="center"> <iframe width="560" height="315" src="https://www.youtube.com/watch?v=cFYigXH-jaU&t" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe> </div>
+https://www.youtube.com/watch?v=cFYigXH-jaU&t
+
+(Click the image above to watch the tutorial on YouTube)
 
 **Key features:**
 - 🔍 Accurate detection of non-followers
