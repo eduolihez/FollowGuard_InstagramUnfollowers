@@ -9,6 +9,17 @@
 
 FollowGuard is a powerful web tool that allows you to analyze your Instagram followers quickly, easily, and securely. Discover who doesn't follow you back, identify patterns in your audience, and optimize your Instagram presence.
 
+For a complete walkthrough of how to use FollowGuard, watch our YouTube tutorial:
+
+<iframe 
+  width="560" 
+  height="315" 
+  src="https://www.youtube.com/watch?v=cFYigXH-jaU&t" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  allowfullscreen>
+</iframe>
+
 **Key features:**
 - 🔍 Accurate detection of non-followers
 - 📈 Connection and engagement analysis
