@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FollowGuard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>FollowGuard</h1>
+            <p>Descubre quién no te sigue de vuelta en Instagram</p>
+            <a href="guide.html" class="guide-link" target="_blank">¿Cómo descargar tus datos de Instagram? Guía completa</a>
+        </header>
+        
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+            <div class="progress-step completed" id="step1">1</div>
+            <div class="progress-step" id="step2">2</div>
+            <div class="progress-step" id="step3">3</div>
+        </div>
+        
+        <!-- Paso 1: Ingresar nombre de usuario -->
+        <div class="step-content active" id="step1Content">
+            <h2>Paso 1: Ingresa tu información</h2>
+            <div class="form-group">
+                <label for="username">Nombre de usuario de Instagram</label>
+                <input type="text" id="username" placeholder="Ej: @tu_usuario" autocomplete="off">
+            </div>
+            
+            <div class="privacy-notice">
+                <p>🔒 <strong>Privacidad:</strong> Tu información de usuario se utilizará únicamente para procesar tu solicitud. Tus datos no se envían a ningún servidor externo.</p>
+            </div>
+            
+            <button class="btn" onclick="nextStep(2)">Continuar</button>
+        </div>
+        
+        <!-- Paso 2: Subir archivos -->
+        <div class="step-content" id="step2Content">
+            <h2>Paso 2: Sube tu carpeta de connections</h2>
+            <p>Para analizar tus seguidores, necesitamos que subas la carpeta completa de "connections" que Instagram te proporciona.</p>
+            <p>Esta carpeta contiene todos los archivos de seguidores, seguidos y solicitudes pendientes.</p>
+            
+            <div class="form-group">
+                <label>Selecciona todos los archivos de la carpeta "connections"</label>
+                <div id="connectionsUpload" class="upload-area">
+                    <div class="upload-icon">📁</div>
+                    <p>Haz clic para seleccionar <strong>todos los archivos JSON</strong> de la carpeta connections</p>
+                    <small>Incluye: followers_1.json, following.json, pending_follow_requests.json</small>
+                </div>
+                <div id="selectedFiles" class="selected-files"></div>
+            </div>
+            
+            <div class="navigation">
+                <button class="btn btn-secondary" onclick="prevStep(1)">Atrás</button>
+                <button class="btn" id="analyzeBtn" onclick="nextStep(3)" disabled>Analizar datos</button>
+            </div>
+        </div>
+        
+        <!-- Paso 3: Resultados -->
+        <div class="step-content" id="step3Content">
+            <h2>Paso 3: Resultados del análisis</h2>
+            
+            <div class="loading" id="loadingIndicator">
+                <div class="spinner"></div>
+                <p>Analizando datos...</p>
+            </div>
+            
+            <div class="results" id="resultsSection">
+                <div class="result-card">
+                    <h3>Resumen de tu cuenta</h3>
+                    <p>Usuario: <strong id="resultUsername">-</strong></p>
+                    <p>Has seguido a <strong id="followingCount">0</strong> usuarios</p>
+                    <p>Tienes <strong id="followersCount">0</strong> seguidores</p>
+                    <p><strong id="nonFollowersCount">0</strong> usuarios no te siguen de vuelta</p>
+                    <p><strong id="pendingCount">0</strong> solicitudes pendientes</p>
+                </div>
+                
+                <div class="result-card">
+                    <h3>Usuarios que no te siguen de vuelta</h3>
+                    <div class="non-follower-list" id="nonFollowersList">
+                        <!-- Los resultados se mostrarán aquí -->
+                    </div>
+                    
+                    <button id="exportNonFollowersBtn" class="btn">Exportar no seguidores a CSV</button>
+                </div>
+                
+                <div class="result-card">
+                    <h3>Solicitudes de seguimiento pendientes</h3>
+                    <div class="non-follower-list" id="pendingList">
+                        <!-- Las solicitudes pendientes se mostrarán aquí -->
+                    </div>
+                    
+                    <button id="exportPendingBtn" class="btn">Exportar pendientes a CSV</button>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <button class="btn btn-secondary" onclick="prevStep(2)">Atrás</button>
+                <button class="btn" onclick="restartProcess()">Realizar nuevo análisis</button>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Esta herramienta procesa tus datos localmente en tu navegador. Tus datos no se envían a ningún servidor.</p>
+            <p>© 2023 FollowGuard - <a href="https://www.instagram.com/eduolihez/">@eduolihez</a></p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

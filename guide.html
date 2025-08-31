@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Completa: Cómo descargar tus datos de Instagram | FollowGuard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #fafafa;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            color: #E1306C;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #405DE6;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* Relación 16:9 */
+            height: 0;
+            margin: 30px 0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .video-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(45deg, #E1306C, #405DE6);
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .video-placeholder i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        
+        .step {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-left: 4px solid #405DE6;
+            background-color: #f8f9fa;
+        }
+        
+        .step-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: #405DE6;
+            color: white;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        
+        .device-tabs {
+            display: flex;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .device-tab {
+            padding: 10px 20px;
+            background: #ddd;
+            cursor: pointer;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            border-radius: 5px 5px 0 0;
+            transition: all 0.3s;
+        }
+        
+        .device-tab.active {
+            background: #405DE6;
+            color: white;
+        }
+        
+        .device-content {
+            display: none;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 0 5px 5px 5px;
+        }
+        
+        .device-content.active {
+            display: block;
+        }
+        
+        .tip {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .warning {
+            background-color: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .screenshot {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .screenshot img {
+            max-width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .caption {
+            font-style: italic;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .back-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #E1306C;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            margin-top: 20px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .back-button:hover {
+            background: #c1355c;
+            transform: translateY(-2px);
+        }
+        
+        .note {
+            background-color: #e9ecef;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            border-left: 4px solid #6c757d;
+        }
+        
+        @media (max-width: 768px) {
+            .device-tabs {
+                flex-direction: column;
+            }
+            
+            .device-tab {
+                border-radius: 5px;
+                margin-bottom: 5px;
+            }
+            
+            .device-content {
+                border-radius: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Guía Completa: Cómo descargar tus datos de Instagram</h1>
+            <p class="subtitle">Aprende paso a paso cómo obtener los archivos necesarios para usar FollowGuard</p>
+        </header>
+        
+        <!-- Sección de video explicativo -->
+        <h2>Video Tutorial</h2>
+        <p>Mira este video donde te explico todo el proceso de forma visual y sencilla:</p>
+        
+        <div class="video-container">
+            <iframe src="https://player.vimeo.com/video/1114548265?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="1920" height="1080" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="tutorial"></iframe>
+        </div>
+
+
+        <!--
+        <div class="video-container"> 
+            <video controls width="100%">
+                <source src="tutorial.mp4" type="video/mp4">
+                Tu navegador no soporta el elemento de video.
+              </video>
+        </div>
+    -->
+        <div class="note">
+            <p>💡 <strong>Nota:</strong> Si prefieres instrucciones escritas, continúa leyendo esta guía paso a paso.</p>
+        </div>
+        
+        <h2>Instrucciones Paso a Paso</h2>
+        <p>Esta guía te explicará paso a paso cómo descargar tus datos de Instagram, tanto desde tu teléfono móvil como desde un ordenador. Los datos que necesitamos son los archivos de la carpeta <strong>"connections"</strong>.</p>
+        
+        <div class="warning">
+            <strong>⚠️ Importante:</strong> Instagram puede tardar desde unos minutos hasta 48 horas en preparar tus datos. Cuando estén listos, recibirás una notificación en la app o un correo electrónico.
+        </div>
+        
+        <div class="device-tabs">
+            <div class="device-tab active" onclick="showDevice('mobile')">Desde Móvil</div>
+            <div class="device-tab" onclick="showDevice('desktop')">Desde Ordenador</div>
+        </div>
+        
+        <div id="mobile" class="device-content active">
+            <div class="step">
+                <h3><span class="step-number">1</span> Abre la app de Instagram</h3>
+                <p>Inicia sesión en tu cuenta si no lo has hecho ya.</p>
+            </div>
+            
+            <div class="step">
+                <h3><span class="step-number">2</span> Ve a tu perfil</h3>
+                <p>Toca tu foto de perfil en la esquina inferior derecha.</p>
+            </div>
+            
+            <div class="step">
+                <h3><span class="step-number">3</span> Accede a Configuración</h3>
+                <p>Toca el icono de las tres líneas (☰) en la esquina superior derecha y luego selecciona "Configuración".</p>
+            </div>
+            
+            <div class="step">
+                <h3><span class="step-number">4</span> Solicita tu información</h3>
+                <p>Desliza hacia abajo y toca "Seguridad", luego "Descargar información".</p>
+                <p>Ingresa tu correo electrónico y contraseña para confirmar tu identidad.</p>
+            </div>
+            
+            <div class="step">
+                <h3><span class="step-number">5</span> Selecciona la información</h3>
+                <p>Selecciona "Alguna información" en lugar de "Toda la información".</p>
+                <p>Selecciona solo "Seguidores y siguiendo" para que el proceso sea más rápido.</p>
+            </div>
+            
+            <div class="step">
+                <h3><span class="step-number">6</span> Espera y descarga</h3>
+                <p>Instagram te enviará un enlace de descarga por correo electrónico o notificación cuando tus datos estén listos.</p>
+                <p>Toca el enlace y descarga el archivo ZIP.</p>
+            </div>
+            
+            <div class="step">
+                <h3><span class="step-number">7</span> Encuentra los archivos</h3>
+                <p>Descomprime el archivo ZIP que descargaste.</p>
+                <p>Ve a la carpeta "connections" y busca los archivos que comienzan con <strong>"followers"</strong>, <strong>"following"</strong> y <strong>"pending"</strong>.</p>
+            </div>
+            
+            <div class="tip">
+                <strong>💡 Consejo:</strong> Si no encuentras la opción "Descargar información" en la app, intenta desde un navegador en tu móvil accediendo a instagram.com desde la versión escritorio.
+            </div>
+        </div>
+        
+        <div id="desktop" class="device-content">
+            <div class="step">
+                <h3><span class="step-number">1</span> Abre Instagram en tu navegador</h3>
+                <p>Ve a <a href="https://www.instagram.com" target="_blank">instagram.com</a> e inicia sesión en tu cuenta.</p>
+            </div>
+            
+            <div class="step">
+                <h3><span class="step-number">2</span> Ve a tu perfil</h3>
+                <p>Haz clic en tu foto de perfil en la esquina superior derecha y selecciona "Perfil".</p>
+            </div>
+            
+            <div class="step">
+                <h3><span class="step-number">3</span> Accede a Configuración</h3>
+                <p>Haz clic en el icono de engranaje (⚙️) junto a "Editar perfil".</p>
+            </div>
+            
+            <div class="step">
+                <h3><span class="step-number">4</span> Solicita tu información</h3>
+                <p>En el menú de la izquierda, haz clic en "Privacidad y seguridad".</p>
+                <p>Desplázate hacia abajo hasta "Datos de Instagram" y haz clic en "Descargar datos".</p>
+            </div>
+            
+            <div class="step">
+                <h3><span class="step-number">5</span> Selecciona la información</h3>
+                <p>Haz clic en "Seleccionar tipos de información" y elige solo "Seguidores y siguiendo".</p>
+                <p>Selecciona el formato JSON y el rango de fechas (mejor "Todo el historial").</p>
+            </div>
+            
+            <div class="step">
+                <h3><span class="step-number">6</span> Espera y descarga</h3>
+                <p>Haz clic en "Crear archivo" y espera a que Instagram prepare tus datos.</p>
+                <p>Recibirás un correo electrónico con un enlace de descarga cuando estén listos.</p>
+            </div>
+            
+            <div class="step">
+                <h3><span class="step-number">7</span> Encuentra los archivos</h3>
+                <p>Descarga el archivo ZIP desde el enlace que recibiste.</p>
+                <p>Descomprime el archivo y ve a la carpeta "connections".</p>
+                <p>Busca los archivos que comienzan con <strong>"followers"</strong>, <strong>"following"</strong> y <strong>"pending"</strong>.</p>
+            </div>
+            
+            <div class="tip">
+                <strong>💡 Consejo:</strong> Si tienes problemas para encontrar la opción, puedes acceder directamente desde: <a href="https://www.instagram.com/download/request/" target="_blank">instagram.com/download/request/</a>
+            </div>
+        </div>
+        
+        <div class="warning">
+            <strong>⚠️ Importante:</strong> Instagram solo mantiene disponible la descarga durante 4 días por motivos de seguridad. Asegúrate de descargar los archivos pronto después de recibir la notificación.
+        </div>
+        
+        <h2>¿Qué hago con estos archivos?</h2>
+        <p>Una vez que tengas los archivos de la carpeta "connections", vuelve a la <a href="index.html">página principal de FollowGuard</a> y súbelos en el Paso 2 para analizar tus seguidores.</p>
+        
+        <h2>¿Por qué necesitamos estos archivos?</h2>
+        <p>Instagram no permite que aplicaciones externas accedan directamente a tu lista de seguidores por motivos de seguridad y privacidad. Al descargar tus datos y subir los archivos específicos, podemos analizar tu información sin poner en riesgo la seguridad de tu cuenta.</p>
+        
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="index.html" class="back-button">Volver a FollowGuard</a>
+        </div>
+    </div>
+
+    <script>
+        function showDevice(device) {
+            // Ocultar todos los contenidos
+            document.querySelectorAll('.device-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Mostrar el contenido seleccionado
+            document.getElementById(device).classList.add('active');
+            
+            // Actualizar pestañas activas
+            document.querySelectorAll('.device-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+</html>
