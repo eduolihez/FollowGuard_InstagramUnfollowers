@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FollowGuard - Análisis de Visitantes de Instagram</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>FollowGuard <span class="pro-badge">PRO</span></h1>
+            <p>Análisis avanzado de seguidores y visitantes de Instagram</p>
+            <nav class="main-nav">
+                <a href="#" class="nav-link active">Inicio</a>
+                <a href="#analysis" class="nav-link">Análisis</a>
+                <a href="#profile-visitors" class="nav-link">Visitantes</a>
+                <a href="guide.html" class="nav-link">Guía</a>
+            </nav>
+        </header>
+
+        <section class="hero">
+            <div class="hero-content">
+                <h2>Descubre quién visita tu perfil de Instagram</h2>
+                <p>Nuestro algoritmo analiza tus interacciones para estimar qué usuarios podrían estar visitando tu perfil con más frecuencia.</p>
+                <div class="cta-buttons">
+                    <button class="btn btn-primary" onclick="showAnalysisSection()">Comenzar Análisis</button>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="analytics-dashboard-preview">
+                    <canvas id="previewChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="analysis" class="analysis-section">
+            <h2>Análisis de Seguidores</h2>
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+                <div class="progress-step completed" id="step1">1</div>
+                <div class="progress-step" id="step2">2</div>
+                <div class="progress-step" id="step3">3</div>
+            </div>
+            
+            <div class="step-content active" id="step1Content">
+                <h3>Paso 1: Ingresa tu información</h3>
+                <div class="form-group">
+                    <label for="username">Nombre de usuario de Instagram</label>
+                    <input type="text" id="username" placeholder="Ej: tu_usuario" autocomplete="off">
+                </div>
+                <button class="btn" onclick="nextStep(2)">Continuar</button>
+            </div>
+            
+            <div class="step-content" id="step2Content">
+                <h3>Paso 2: Sube tus archivos de Instagram</h3>
+                <p>Para un análisis completo, sube todos los archivos JSON de la carpeta "connections" y otros archivos de interacciones.</p>
+                
+                <div class="form-group">
+                    <label>Selecciona todos los archivos JSON relevantes</label>
+                    <div id="connectionsUpload" class="upload-area">
+                        <div class="upload-icon">📁</div>
+                        <p>Haz clic para seleccionar archivos JSON</p>
+                        <small>Incluye: followers.json, following.json, likes.json, comments.json, etc.</small>
+                    </div>
+                    <div id="selectedFiles" class="selected-files"></div>
+                </div>
+                
+                <div class="navigation">
+                    <button class="btn btn-secondary" onclick="prevStep(1)">Atrás</button>
+                    <button class="btn" id="analyzeBtn" onclick="nextStep(3)">Analizar datos</button>
+                </div>
+            </div>
+            
+            <div class="step-content" id="step3Content">
+                <h3>Paso 3: Resultados del análisis</h3>
+                
+                <div class="loading" id="loadingIndicator">
+                    <div class="spinner"></div>
+                    <p>Analizando datos...</p>
+                </div>
+                
+                <div class="results" id="resultsSection">
+                    <div class="result-card">
+                        <h3>Resumen de tu cuenta</h3>
+                        <p>Usuario: <strong id="resultUsername">-</strong></p>
+                        <p>Has seguido a <strong id="followingCount">0</strong> usuarios</p>
+                        <p>Tienes <strong id="followersCount">0</strong> seguidores</p>
+                        <p><strong id="nonFollowersCount">0</strong> usuarios no te siguen de vuelta</p>
+                    </div>
+                    
+                    <div class="result-card">
+                        <h3>Usuarios que no te siguen de vuelta</h3>
+                        <div class="non-follower-list" id="nonFollowersList"></div>
+                        <button id="exportNonFollowersBtn" class="btn">Exportar lista a CSV</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="profile-visitors" class="profile-visitors-section">
+            <h2>Análisis de Visitantes del Perfil</h2>
+            <div class="disclaimer">
+                <p>⚠️ <strong>Nota importante:</strong> Este análisis es una estimación basada en tus interacciones y patrones de actividad. Instagram no proporciona datos específicos sobre visitantes al perfil, por lo que estos resultados son orientativos y pueden no reflejar la realidad exacta.</p>
+            </div>
+            
+            <div class="results" id="visitorsResultsSection">
+                <div class="result-card">
+                    <h3>Posibles visitantes frecuentes de tu perfil</h3>
+                    <p>Basado en tus interacciones, estos usuarios podrían estar visitando tu perfil con más frecuencia:</p>
+                    <div class="visitors-list" id="visitorsList"></div>
+                </div>
+                
+                <div class="result-card">
+                    <h3>Estadísticas de interacciones</h3>
+                    <canvas id="interactionsChart" height="250"></canvas>
+                </div>
+                
+                <div class="result-card">
+                    <h3>Patrones de actividad</h3>
+                    <div class="activity-patterns" id="activityPatterns"></div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>FollowGuard - Herramienta de análisis para Instagram</p>
+            <p>⚠️ Los resultados de visitantes al perfil son estimaciones basadas en interacciones y pueden no ser exactos.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
