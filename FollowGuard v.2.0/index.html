@@ -3,133 +3,2491 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FollowGuard - Análisis de Visitantes de Instagram</title>
-    <link rel="stylesheet" href="style.css">
+    <title>FollowGuard PRO - Análisis Completo de Instagram</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary: #8a3ab9;
+            --primary-gradient: linear-gradient(45deg, #8a3ab9, #bc2a8d, #fccc63);
+            --secondary: #405DE6;
+            --light: #fafafa;
+            --dark: #262626;
+            --gray: #8e8e8e;
+            --light-gray: #dbdbdb;
+            --success: #2ecc71;
+            --warning: #f1c40f;
+            --danger: #e74c3c;
+            --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: var(--dark);
+            line-height: 1.6;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 20px 20px;
+            background: var(--primary-gradient);
+            color: white;
+            position: relative;
+        }
+
+        .header-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .logo i {
+            font-size: 2.2rem;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+            display: inline-block;
+        }
+
+        .pro-badge {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7em;
+            margin-left: 10px;
+            vertical-align: middle;
+            font-weight: 500;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 100;
+        }
+
+        .main-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: var(--transition);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .nav-link i {
+            font-size: 0.9rem;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 40px;
+            align-items: center;
+            padding: 60px 40px;
+            background: var(--light);
+        }
+
+        .hero-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(138, 58, 185, 0.3);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            background: var(--primary-gradient);
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-next {
+            background: var(--primary-gradient);
+            padding: 12px 24px;
+            margin-top: 10px;
+        }
+
+        .features {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .feature i {
+            color: var(--primary);
+        }
+
+        .analytics-dashboard-preview {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--light-gray);
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--light-gray);
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .metric {
+            text-align: center;
+            flex: 1;
+            min-width: 80px;
+        }
+
+        .metric .value {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .metric .label {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        .chart-container {
+            position: relative;
+            height: 200px;
+            width: 100%;
+        }
+
+        .analysis-section, .profile-visitors-section, .advanced-analysis-section {
+            padding: 40px;
+        }
+
+        .section-description {
+            color: var(--gray);
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .progress-container {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin: 40px auto;
+            max-width: 700px;
+        }
+
+        .progress-bar {
+            position: absolute;
+            height: 4px;
+            background: var(--primary);
+            top: 50%;
+            transform: translateY(-50%);
+            transition: width 0.5s ease;
+            z-index: 1;
+            border-radius: 2px;
+        }
+
+        .progress-step {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: white;
+            border: 3px solid #ddd;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            position: relative;
+            z-index: 2;
+            transition: var(--transition);
+        }
+
+        .progress-step span {
+            font-size: 1.rem;
+            color: var(--gray);
+        }
+
+        .progress-step label {
+            position: absolute;
+            bottom: -30px;
+            font-size: 0.8rem;
+            color: var(--gray);
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .progress-step.active {
+            border-color: var(--primary);
+        }
+
+        .progress-step.active span {
+            color: var(--primary);
+        }
+
+        .progress-step.completed {
+            border-color: var(--success);
+            background-color: var(--success);
+            color: white;
+        }
+
+        .progress-step.completed span {
+            color: white;
+        }
+
+        .step-content {
+            padding: 20px 0;
+            display: none;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .step-content.active {
+            display: block;
+        }
+
+        .step-header {
+            margin-bottom: 25px;
+        }
+
+        .step-number {
+            display: inline-block;
+            background: var(--primary-gradient);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .step-header h3 {
+            font-size: 1.5rem;
+            color: var(--dark);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid var(--light-gray);
+            border-radius: 8px;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(138, 58, 185, 0.1);
+        }
+
+        .folder-input {
+            display: none;
+        }
+
+        .input-note {
+            font-size: 0.8rem;
+            color: var(--gray);
+            margin-top: 6px;
+        }
+
+        .upload-area {
+            border: 2px dashed var(--light-gray);
+            border-radius: 12px;
+            padding: 40px 30px;
+            text-align: center;
+            margin: 20px 0;
+            cursor: pointer;
+            transition: var(--transition);
+            background: #fcfcfc;
+        }
+
+        .upload-area:hover {
+            border-color: var(--primary);
+            background-color: rgba(138, 58, 185, 0.03);
+        }
+
+        .upload-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .upload-area p {
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .upload-area small {
+            color: var(--gray);
+        }
+
+        .selected-files {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .file-item:last-child {
+            border-bottom: none;
+        }
+
+        .file-name {
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+
+        .file-status {
+            font-size: 0.8rem;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .file-status.success {
+            background-color: #e7f6ef;
+            color: var(--success);
+        }
+
+        .file-status.error {
+            background-color: #fdecea;
+            color: var(--danger);
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .navigation .btn {
+            flex: 1;
+            min-width: 120px;
+            justify-content: center;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px 20px;
+            display: none;
+        }
+
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-left: 4px solid var(--primary);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .progress-text {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .results {
+            margin-top: 20px;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .result-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 20px;
+            border: 1px solid var(--light-gray);
+            width: 100%;
+        }
+
+        .result-card h3 {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--dark);
+        }
+
+        .summary-card {
+            grid-column: 1 / -1;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .category-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .category-stat {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .category-stat i {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .category-stat h4 {
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+
+        .category-stat p {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .non-follower-list, .visitors-list {
+            max-height: 500px;
+            overflow-y: auto;
+            margin: 15px 0;
+        }
+
+        .non-follower-item, .visitor-item {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .non-follower-item:hover, .visitor-item:hover {
+            background: #f9f9f9;
+        }
+
+        .non-follower-item:last-child, .visitor-item:last-child {
+            border-bottom: none;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .user-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .username {
+            font-weight: 600;
+        }
+
+        .user-detail {
+            font-size: 0.8rem;
+            color: var(--gray);
+            margin-top: 4px;
+        }
+
+        .visitor-score {
+            margin-left: auto;
+            background: var(--primary-gradient);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 30px;
+            color: var(--gray);
+            font-style: italic;
+        }
+
+        .disclaimer {
+            background-color: #fef9e7;
+            border-left: 4px solid var(--warning);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .disclaimer-icon {
+            color: var(--warning);
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .disclaimer p {
+            margin: 0;
+        }
+
+        .activity-patterns {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .pattern-card {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .file-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .file-category {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .file-category i {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .file-category h4 {
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+
+        .file-category p {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: var(--gray);
+            font-size: 0.9rem;
+            background: #f8f9fa;
+            margin-top: 40px;
+        }
+
+        .footer-content {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .footer-note {
+            margin-top: 15px;
+            font-size: 0.8rem;
+        }
+
+        /* Estilos para gráficos */
+        .chart-container {
+            position: relative;
+            height: 250px;
+            width: 100%;
+        }
+
+        .analytics-dashboard-preview .chart-container {
+            height: 200px;
+        }
+
+        canvas {
+            display: block;
+            max-width: 100%;
+        }
+
+        /* Nuevos estilos para pestañas */
+        .tabs {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 8px 8px 0 0;
+            background: #f5f5f5;
+            font-weight: 500;
+            transition: var(--transition);
+            border: 1px solid transparent;
+            border-bottom: none;
+        }
+
+        .tab.active {
+            background: white;
+            border-color: var(--light-gray);
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Nuevos estilos para enlaces de usuario */
+        .user-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: inherit;
+            flex-grow: 1;
+        }
+
+        .user-link:hover {
+            color: var(--primary);
+        }
+
+        /* Media Queries para Responsividad */
+        @media (max-width: 1024px) {
+            .hero {
+                gap: 30px;
+                padding: 50px 30px;
+            }
+            
+            .hero-content h2 {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                box-shadow: none;
+            }
+            
+            header {
+                padding: 20px 15px;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .main-nav {
+                display: none;
+                flex-direction: column;
+                gap: 10px;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                padding: 20px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                z-index: 99;
+            }
+            
+            .main-nav.active {
+                display: flex;
+            }
+            
+            .nav-link {
+                color: var(--dark);
+                justify-content: center;
+            }
+            
+            .nav-link.active {
+                background: var(--primary);
+                color: white;
+            }
+            
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding: 40px 20px;
+                gap: 30px;
+            }
+            
+            .hero-content h2 {
+                font-size: 2rem;
+            }
+            
+            .cta-buttons {
+                justify-content: center;
+            }
+            
+            .features {
+                justify-content: center;
+            }
+            
+            .analysis-section, .profile-visitors-section, .advanced-analysis-section {
+                padding: 30px 20px;
+            }
+            
+            .progress-step label {
+                display: none;
+            }
+            
+            .progress-container {
+                margin: 30px auto;
+            }
+            
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .dashboard-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .metric {
+                min-width: auto;
+            }
+            
+            .navigation {
+                flex-direction: column;
+            }
+            
+            .disclaimer {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            
+            .chart-container {
+                height: 200px;
+            }
+            
+            .analytics-dashboard-preview .chart-container {
+                height: 180px;
+            }
+            
+            .tabs {
+                flex-direction: column;
+                border-bottom: none;
+            }
+            
+            .tab {
+                border-radius: 8px;
+                border: 1px solid var(--light-gray);
+                margin-bottom: 5px;
+            }
+            
+            .tab.active {
+                border-radius: 8px;
+                border-bottom: 1px solid var(--light-gray);
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero-content h2 {
+                font-size: 1.8rem;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+            }
+            
+            .btn {
+                padding: 12px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .step-header h3 {
+                font-size: 1.3rem;
+            }
+            
+            .upload-area {
+                padding: 30px 15px;
+            }
+            
+            .upload-area p {
+                font-size: 0.9rem;
+            }
+            
+            .result-card {
+                padding: 20px 15px;
+            }
+            
+            .stat-value {
+                font-size: 1.5rem;
+            }
+            
+            .user-avatar {
+                width: 35px;
+                height: 35px;
+                margin-right: 10px;
+            }
+            
+            .visitor-item, .non-follower-item {
+                padding: 10px;
+            }
+            
+            .chart-container {
+                height: 180px;
+            }
+            
+            .analytics-dashboard-preview .chart-container {
+                height: 160px;
+            }
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 500;
+            z-index: 1000;
+            transform: translateX(100%);
+            opacity: 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            max-width: calc(100% - 40px);
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        
+        .notification.success {
+            background: #2ecc71;
+        }
+        
+        .notification.error {
+            background: #e74c3c;
+        }
+        
+        .notification.warning {
+            background: #f1c40f;
+        }
+        
+        .notification.info {
+            background: #3498db;
+        }
+        
+        .notification-content {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        @media (max-width: 480px) {
+            .notification {
+                top: 10px;
+                right: 10px;
+                left: 10px;
+                max-width: calc(100% - 20px);
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>FollowGuard <span class="pro-badge">PRO</span></h1>
-            <p>Análisis avanzado de seguidores y visitantes de Instagram</p>
-            <nav class="main-nav">
-                <a href="#" class="nav-link active">Inicio</a>
-                <a href="#analysis" class="nav-link">Análisis</a>
-                <a href="#profile-visitors" class="nav-link">Visitantes</a>
-                <a href="guide.html" class="nav-link">Guía</a>
-            </nav>
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-shield-alt"></i>
+                    <h1>FollowGuard <span class="pro-badge">PRO</span></h1>
+                </div>
+                <p>Análisis avanzado de datos de Instagram</p>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <nav class="main-nav" id="mainNav">
+                    <a href="#" class="nav-link active"><i class="fas fa-home"></i> Inicio</a>
+                    <a href="#analysis" class="nav-link"><i class="fas fa-chart-pie"></i> Análisis</a>
+                    <a href="#advanced-analysis" class="nav-link"><i class="fas fa-chart-line"></i> Estadísticas</a>
+                    <a href="#profile-visitors" class="nav-link"><i class="fas fa-eye"></i> Visitantes</a>
+                </nav>
+            </div>
         </header>
 
         <section class="hero">
             <div class="hero-content">
-                <h2>Descubre quién visita tu perfil de Instagram</h2>
-                <p>Nuestro algoritmo analiza tus interacciones para estimar qué usuarios podrían estar visitando tu perfil con más frecuencia.</p>
+                <h2>Análisis completo de tus datos de Instagram</h2>
+                <p>Descubre información valiosa sobre tus seguidores, interacciones y patrones de uso de Instagram con nuestro análisis avanzado.</p>
                 <div class="cta-buttons">
-                    <button class="btn btn-primary" onclick="showAnalysisSection()">Comenzar Análisis</button>
+                    <button class="btn btn-primary" onclick="showAnalysisSection()">
+                        <i class="fas fa-chart-line"></i> Comenzar Análisis
+                    </button>
+                </div>
+                <div class="features">
+                    <div class="feature">
+                        <i class="fas fa-user-check"></i>
+                        <span>Análisis de seguidores</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-comments"></i>
+                        <span>Interacciones y mensajes</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Estadísticas detalladas</span>
+                    </div>
                 </div>
             </div>
             <div class="hero-visual">
                 <div class="analytics-dashboard-preview">
-                    <canvas id="previewChart"></canvas>
+                    <div class="dashboard-header">
+                        <div class="metric">
+                            <span class="value">1,247</span>
+                            <span class="label">Seguidores</span>
+                        </div>
+                        <div class="metric">
+                            <span class="value">893</span>
+                            <span class="label">Siguiendo</span>
+                        </div>
+                        <div class="metric">
+                            <span class="value">354</span>
+                            <span class="label">No te siguen</span>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="previewChart"></canvas>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section id="analysis" class="analysis-section">
-            <h2>Análisis de Seguidores</h2>
+            <h2><i class="fas fa-chart-pie"></i> Análisis de Datos de Instagram</h2>
+            <p class="section-description">Sube tus datos de Instagram para obtener un análisis completo de tu actividad.</p>
+            
             <div class="progress-container">
                 <div class="progress-bar" id="progressBar"></div>
-                <div class="progress-step completed" id="step1">1</div>
-                <div class="progress-step" id="step2">2</div>
-                <div class="progress-step" id="step3">3</div>
+                <div class="progress-step completed" id="step1">
+                    <span>1</span>
+                    <label>Información</label>
+                </div>
+                <div class="progress-step" id="step2">
+                    <span>2</span>
+                    <label>Archivos</label>
+                </div>
+                <div class="progress-step" id="step3">
+                    <span>3</span>
+                    <label>Resultados</label>
+                </div>
             </div>
             
             <div class="step-content active" id="step1Content">
-                <h3>Paso 1: Ingresa tu información</h3>
-                <div class="form-group">
-                    <label for="username">Nombre de usuario de Instagram</label>
-                    <input type="text" id="username" placeholder="Ej: tu_usuario" autocomplete="off">
+                <div class="step-header">
+                    <span class="step-number">Paso 1</span>
+                    <h3>Ingresa tu información</h3>
                 </div>
-                <button class="btn" onclick="nextStep(2)">Continuar</button>
+                <div class="form-group">
+                    <label for="username">
+                        <i class="fas fa-user"></i> Nombre de usuario de Instagram
+                    </label>
+                    <input type="text" id="username" placeholder="Ej: tu_usuario" autocomplete="off">
+                    <div class="input-note">No compartimos esta información con terceros</div>
+                </div>
+                <button class="btn btn-next" onclick="nextStep(2)">
+                    Continuar <i class="fas fa-arrow-right"></i>
+                </button>
             </div>
             
             <div class="step-content" id="step2Content">
-                <h3>Paso 2: Sube tus archivos de Instagram</h3>
-                <p>Para un análisis completo, sube todos los archivos JSON de la carpeta "connections" y otros archivos de interacciones.</p>
+                <div class="step-header">
+                    <span class="step-number">Paso 2</span>
+                    <h3>Sube tus archivos de Instagram</h3>
+                </div>
+                <p>Para un análisis completo, sube todos los archivos JSON de tu carpeta de datos de Instagram.</p>
                 
                 <div class="form-group">
-                    <label>Selecciona todos los archivos JSON relevantes</label>
+                    <label>
+                        <i class="fas fa-file-upload"></i> Selecciona la carpeta con tus archivos JSON
+                    </label>
+                    <input type="file" id="folderInput" webkitdirectory directory multiple class="folder-input">
                     <div id="connectionsUpload" class="upload-area">
-                        <div class="upload-icon">📁</div>
-                        <p>Haz clic para seleccionar archivos JSON</p>
-                        <small>Incluye: followers.json, following.json, likes.json, comments.json, etc.</small>
+                        <div class="upload-icon">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                        </div>
+                        <p>Haz clic para seleccionar una carpeta o arrástrala aquí</p>
+                        <small>Se analizarán todos los archivos JSON dentro de la carpeta y sus subcarpetas</small>
                     </div>
                     <div id="selectedFiles" class="selected-files"></div>
                 </div>
                 
+                <div class="file-categories">
+                    <div class="file-category">
+                        <i class="fas fa-users"></i>
+                        <h4>Seguidores</h4>
+                        <p id="followersCountPreview">0</p>
+                    </div>
+                    <div class="file-category">
+                        <i class="fas fa-comment"></i>
+                        <h4>Comentarios</h4>
+                        <p id="commentsCountPreview">0</p>
+                    </div>
+                    <div class="file-category">
+                        <i class="fas fa-envelope"></i>
+                        <h4>Mensajes</h4>
+                        <p id="messagesCountPreview">0</p>
+                    </div>
+                    <div class="file-category">
+                        <i class="fas fa-heart"></i>
+                        <h4>Likes</h4>
+                        <p id="likesCountPreview">0</p>
+                    </div>
+                </div>
+                
                 <div class="navigation">
-                    <button class="btn btn-secondary" onclick="prevStep(1)">Atrás</button>
-                    <button class="btn" id="analyzeBtn" onclick="nextStep(3)">Analizar datos</button>
+                    <button class="btn btn-secondary" onclick="prevStep(1)">
+                        <i class="fas fa-arrow-left"></i> Atrás
+                    </button>
+                    <button class="btn btn-primary" id="analyzeBtn" onclick="nextStep(3)" disabled>
+                        <i class="fas fa-cogs"></i> Analizar datos
+                    </button>
                 </div>
             </div>
             
             <div class="step-content" id="step3Content">
-                <h3>Paso 3: Resultados del análisis</h3>
+                <div class="step-header">
+                    <span class="step-number">Paso 3</span>
+                    <h3>Resultados del análisis</h3>
+                </div>
                 
                 <div class="loading" id="loadingIndicator">
                     <div class="spinner"></div>
                     <p>Analizando datos...</p>
+                    <div class="progress-text" id="progressText">Cargando 0%</div>
                 </div>
                 
                 <div class="results" id="resultsSection">
+                    <div class="results-grid">
+                        <div class="result-card summary-card">
+                            <h3><i class="fas fa-user-circle"></i> Resumen de tu cuenta</h3>
+                            <div class="stats-grid">
+                                <div class="stat">
+                                    <div class="stat-value" id="resultUsername">-</div>
+                                    <div class="stat-label">Usuario</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-value" id="followingCount">0</div>
+                                    <div class="stat-label">Siguiendo</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-value" id="followersCount">0</div>
+                                    <div class="stat-label">Seguidores</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-value" id="nonFollowersCount">0</div>
+                                    <div class="stat-label">No te siguen</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-value" id="fansCount">0</div>
+                                    <div class="stat-label">Fans (no sigues)</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-value" id="pendingRequestsCount">0</div>
+                                    <div class="stat-label">Solicitudes pendientes</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="result-card" style="min-height: 600px;">
+                            <div class="tabs" id="relationshipTabs">
+                                <div class="tab active" data-tab="nonFollowers">No te siguen</div>
+                                <div class="tab" data-tab="fans">Fans (no sigues)</div>
+                                <div class="tab" data-tab="pendingRequests">Solicitudes pendientes</div>
+                            </div>
+                            
+                            <div class="tab-content active" data-tab="nonFollowers">
+                                <h3><i class="fas fa-users-slash"></i> Usuarios que no te siguen de vuelta</h3>
+                                <div class="non-follower-list" id="nonFollowersList"></div>
+                                <button id="exportNonFollowersBtn" class="btn btn-outline">
+                                    <i class="fas fa-download"></i> Exportar lista a CSV
+                                </button>
+                            </div>
+                            
+                            <div class="tab-content" data-tab="fans">
+                                <h3><i class="fas fa-user-plus"></i> Fans: Te siguen pero tú no los sigues</h3>
+                                <div class="non-follower-list" id="fansList"></div>
+                                <button id="exportFansBtn" class="btn btn-outline">
+                                    <i class="fas fa-download"></i> Exportar lista a CSV
+                                </button>
+                            </div>
+                            
+                            <div class="tab-content" data-tab="pendingRequests">
+                                <h3><i class="fas fa-user-clock"></i> Solicitudes pendientes</h3>
+                                <div class="non-follower-list" id="pendingRequestsList"></div>
+                                <button id="exportPendingRequestsBtn" class="btn btn-outline">
+                                    <i class="fas fa-download"></i> Exportar lista a CSV
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="advanced-analysis" class="advanced-analysis-section">
+            <h2><i class="fas fa-chart-line"></i> Análisis Avanzado</h2>
+            <p class="section-description">Estadísticas detalladas de tu actividad en Instagram</p>
+            
+            <div class="results">
+                <div class="results-grid">
                     <div class="result-card">
-                        <h3>Resumen de tu cuenta</h3>
-                        <p>Usuario: <strong id="resultUsername">-</strong></p>
-                        <p>Has seguido a <strong id="followingCount">0</strong> usuarios</p>
-                        <p>Tienes <strong id="followersCount">0</strong> seguidores</p>
-                        <p><strong id="nonFollowersCount">0</strong> usuarios no te siguen de vuelta</p>
+                        <h3><i class="fas fa-comments"></i> Resumen de Interacciones</h3>
+                        <div class="category-stats">
+                            <div class="category-stat">
+                                <i class="fas fa-heart"></i>
+                                <h4>Likes</h4>
+                                <p id="totalLikes">0</p>
+                            </div>
+                            <div class="category-stat">
+                                <i class="fas fa-comment"></i>
+                                <h4>Comentarios</h4>
+                                <p id="totalComments">0</p>
+                            </div>
+                            <div class="category-stat">
+                                <i class="fas fa-share"></i>
+                                <h4>Compartidos</h4>
+                                <p id="totalShares">0</p>
+                            </div>
+                            <div class="category-stat">
+                                <i class="fas fa-eye"></i>
+                                <h4>Visualizaciones</h4>
+                                <p id="totalViews">0</p>
+                            </div>
+                        </div>
                     </div>
                     
                     <div class="result-card">
-                        <h3>Usuarios que no te siguen de vuelta</h3>
-                        <div class="non-follower-list" id="nonFollowersList"></div>
-                        <button id="exportNonFollowersBtn" class="btn">Exportar lista a CSV</button>
+                        <h3><i class="fas fa-envelope"></i> Actividad de Mensajes</h3>
+                        <div class="category-stats">
+                            <div class="category-stat">
+                                <i class="fas fa-comments"></i>
+                                <h4>Conversaciones</h4>
+                                <p id="totalConversations">0</p>
+                            </div>
+                            <div class="category-stat">
+                                <i class="fas fa-user-friends"></i>
+                                <h4>Contactos</h4>
+                                <p id="totalContacts">0</p>
+                            </div>
+                            <div class="category-stat">
+                                <i class="fas fa-paper-plane"></i>
+                                <h4>Mensajes Enviados</h4>
+                                <p id="totalMessagesSent">0</p>
+                            </div>
+                            <div class="category-stat">
+                                <i class="fas fa-inbox"></i>
+                                <h4>Mensajes Recibidos</h4>
+                                <p id="totalMessagesReceived">0</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="result-card">
+                        <h3><i class="fas fa-history"></i> Tiempo de Uso</h3>
+                        <div class="chart-container">
+                            <canvas id="timeUsageChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="result-card">
+                        <h3><i class="fas fa-calendar"></i> Actividad por Día</h3>
+                        <div class="chart-container">
+                            <canvas id="activityChart"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
         <section id="profile-visitors" class="profile-visitors-section">
-            <h2>Análisis de Visitantes del Perfil</h2>
+            <h2><i class="fas fa-eye"></i> Análisis de Visitantes del Perfil</h2>
+            <p class="section-description">Estimación basada en tus patrones de interacción en Instagram</p>
+            
             <div class="disclaimer">
-                <p>⚠️ <strong>Nota importante:</strong> Este análisis es una estimación basada en tus interacciones y patrones de actividad. Instagram no proporciona datos específicos sobre visitantes al perfil, por lo que estos resultados son orientativos y pueden no reflejar la realidad exacta.</p>
+                <div class="disclaimer-icon">
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <p><strong>Nota importante:</strong> Este análisis es una estimación basada en tus interacciones y patrones de actividad. Instagram no proporciona datos específicos sobre visitantes al perfil, por lo que estos resultados son orientativos y pueden no reflejar la realidad exacta.</p>
             </div>
             
             <div class="results" id="visitorsResultsSection">
-                <div class="result-card">
-                    <h3>Posibles visitantes frecuentes de tu perfil</h3>
-                    <p>Basado en tus interacciones, estos usuarios podrían estar visitando tu perfil con más frecuencia:</p>
-                    <div class="visitors-list" id="visitorsList"></div>
-                </div>
-                
-                <div class="result-card">
-                    <h3>Estadísticas de interacciones</h3>
-                    <canvas id="interactionsChart" height="250"></canvas>
-                </div>
-                
-                <div class="result-card">
-                    <h3>Patrones de actividad</h3>
-                    <div class="activity-patterns" id="activityPatterns"></div>
+                <div class="results-grid">
+                    <div class="result-card">
+                        <h3><i class="fas fa-user-clock"></i> Posibles visitantes frecuentes</h3>
+                        <p>Basado en tus interacciones, estos usuarios podrían estar visitando tu perfil con más frecuencia:</p>
+                        <div class="visitors-list" id="visitorsList"></div>
+                    </div>
+                    
+                    <div class="result-card">
+                        <h3><i class="fas fa-chart-bar"></i> Estadísticas de interacciones</h3>
+                        <div class="chart-container">
+                            <canvas id="interactionsChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="result-card">
+                        <h3><i class="fas fa-wave-square"></i> Patrones de actividad</h3>
+                        <div class="activity-patterns" id="activityPatterns"></div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <footer>
-            <p>FollowGuard - Herramienta de análisis para Instagram</p>
-            <p>⚠️ Los resultados de visitantes al perfil son estimaciones basadas en interacciones y pueden no ser exactos.</p>
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-shield-alt"></i> FollowGuard PRO
+                </div>
+                <p>Herramienta de análisis avanzado para Instagram</p>
+                <p class="footer-note">⚠️ Los resultados de visitantes al perfil son estimaciones basadas en interacciones y pueden no ser exactos.</p>
+            </div>
         </footer>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        // Variables globales
+        let currentStep = 1;
+        let username = '';
+        let connectionsFiles = [];
+        let followers = [];
+        let following = [];
+        let nonFollowers = [];
+        let fans = []; // Te siguen pero tú no los sigues
+        let pendingRequests = []; // Solicitudes pendientes
+        let profileVisitors = [];
+        let previewChartInstance = null;
+        let interactionsChartInstance = null;
+        let timeUsageChartInstance = null;
+        let activityChartInstance = null;
+
+        // Categorías de archivos
+        const fileCategories = {
+            followers: [],
+            following: [],
+            likes: [],
+            comments: [],
+            messages: [],
+            stories: [],
+            posts: [],
+            reels: [],
+            ads: [],
+            searches: [],
+            settings: [],
+            other: []
+        };
+
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', function() {
+            setupUploadArea();
+            setupMobileMenu();
+            initializePreviewChart();
+            
+            document.getElementById('exportNonFollowersBtn').addEventListener('click', function() {
+                exportToCSV(nonFollowers, 'no_seguidores');
+            });
+            
+            updateProgressBar();
+        });
+
+        // Configuración del menú móvil
+        function setupMobileMenu() {
+            const menuBtn = document.getElementById('mobileMenuBtn');
+            const mainNav = document.getElementById('mainNav');
+            
+            menuBtn.addEventListener('click', function() {
+                mainNav.classList.toggle('active');
+                
+                // Cambiar ícono
+                const icon = menuBtn.querySelector('i');
+                if (mainNav.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+            
+            // Cerrar menú al hacer clic en un enlace
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mainNav.classList.remove('active');
+                    menuBtn.querySelector('i').classList.remove('fa-times');
+                    menuBtn.querySelector('i').classList.add('fa-bars');
+                });
+            });
+        }
+
+        // Inicializar gráfico de previsualización
+        function initializePreviewChart() {
+            const ctx = document.getElementById('previewChart');
+            if (!ctx) return;
+            
+            // Destruir gráfico existente si hay uno
+            if (previewChartInstance) {
+                previewChartInstance.destroy();
+            }
+            
+            previewChartInstance = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'],
+                    datasets: [{
+                        label: 'Interacciones semanales',
+                        data: [12, 19, 8, 15, 6, 11, 14],
+                        borderColor: '#8a3ab9',
+                        tension: 0.3,
+                        fill: true,
+                        backgroundColor: 'rgba(138, 58, 185, 0.1)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                display: false
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Configuración del área de upload para carpetas
+        function setupUploadArea() {
+            const area = document.getElementById('connectionsUpload');
+            const folderInput = document.getElementById('folderInput');
+            
+            area.addEventListener('click', function() {
+                folderInput.click();
+            });
+            
+            // Soporte para arrastrar y soltar
+            area.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                area.style.borderColor = '#8a3ab9';
+                area.style.backgroundColor = 'rgba(138, 58, 185, 0.05)';
+            });
+            
+            area.addEventListener('dragleave', function() {
+                area.style.borderColor = '';
+                area.style.backgroundColor = '';
+            });
+            
+            area.addEventListener('drop', function(e) {
+                e.preventDefault();
+                const items = e.dataTransfer.items;
+                
+                if (!items) return;
+                
+                connectionsFiles = [];
+                const filesContainer = document.getElementById('selectedFiles');
+                filesContainer.innerHTML = '';
+                
+                // Procesar cada elemento arrastrado
+                processItems(items).then(() => {
+                    checkFilesReady();
+                });
+            });
+            
+            folderInput.addEventListener('change', function(e) {
+                const files = Array.from(e.target.files);
+                if (files.length === 0) return;
+                
+                connectionsFiles = [];
+                const filesContainer = document.getElementById('selectedFiles');
+                filesContainer.innerHTML = '';
+                
+                // Procesar archivos
+                processFiles(files).then(() => {
+                    checkFilesReady();
+                });
+            });
+        }
+
+        // Procesar elementos arrastrados (archivos o carpetas)
+        async function processItems(items) {
+            for (let i = 0; i < items.length; i++) {
+                const item = items[i];
+                
+                if (item.kind === 'file') {
+                    const file = item.getAsFile();
+                    await processFile(file);
+                } else if (item.kind === 'directory') {
+                    const directory = item;
+                    // No podemos acceder recursivamente a directorios por seguridad
+                    showNotification('No es posible acceder a carpetas mediante arrastre. Por favor, selecciona la carpeta usando el botón.', 'warning');
+                }
+            }
+        }
+
+        // Procesar lista de archivos
+        async function processFiles(files) {
+            for (let i = 0; i < files.length; i++) {
+                await processFile(files[i]);
+            }
+        }
+
+        // Procesar un archivo individual
+        async function processFile(file) {
+            return new Promise((resolve) => {
+                if (!file.name.endsWith('.json')) {
+                    resolve();
+                    return;
+                }
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    try {
+                        const data = JSON.parse(e.target.result);
+                        connectionsFiles.push({
+                            name: file.name,
+                            data: data,
+                            file: file
+                        });
+                        
+                        // Categorizar archivo
+                        categorizeFile(file.name, data);
+                        
+                        // Mostrar archivo en la lista
+                        const filesContainer = document.getElementById('selectedFiles');
+                        const fileItem = document.createElement('div');
+                        fileItem.className = 'file-item';
+                        fileItem.innerHTML = `
+                            <span class="file-name"><i class="fas fa-file-code"></i> ${file.name}</span>
+                            <span class="file-status success">Cargado</span>
+                        `;
+                        filesContainer.appendChild(fileItem);
+                        
+                        resolve();
+                    } catch (error) {
+                        // Mostrar error para este archivo
+                        const filesContainer = document.getElementById('selectedFiles');
+                        const fileItem = document.createElement('div');
+                        fileItem.className = 'file-item';
+                        fileItem.innerHTML = `
+                            <span class="file-name"><i class="fas fa-file-exclamation"></i> ${file.name}</span>
+                            <span class="file-status error">Error: Archivo JSON inválido</span>
+                        `;
+                        filesContainer.appendChild(fileItem);
+                        console.error('Error al leer el archivo:', error);
+                        resolve();
+                    }
+                };
+                reader.readAsText(file);
+            });
+        }
+
+        // Categorizar archivo según su nombre y contenido
+        function categorizeFile(fileName, data) {
+            const name = fileName.toLowerCase();
+            
+            if (name.includes('follower')) {
+                fileCategories.followers.push({name, data});
+            } else if (name.includes('following')) {
+                fileCategories.following.push({name, data});
+            } else if (name.includes('like')) {
+                fileCategories.likes.push({name, data});
+            } else if (name.includes('comment')) {
+                fileCategories.comments.push({name, data});
+            } else if (name.includes('message')) {
+                fileCategories.messages.push({name, data});
+            } else if (name.includes('story')) {
+                fileCategories.stories.push({name, data});
+            } else if (name.includes('post')) {
+                fileCategories.posts.push({name, data});
+            } else if (name.includes('reel')) {
+                fileCategories.reels.push({name, data});
+            } else if (name.includes('ad')) {
+                fileCategories.ads.push({name, data});
+            } else if (name.includes('search')) {
+                fileCategories.searches.push({name, data});
+            } else if (name.includes('setting') || name.includes('preference')) {
+                fileCategories.settings.push({name, data});
+            } else {
+                fileCategories.other.push({name, data});
+            }
+            
+            // Actualizar vistas previas
+            updatePreviews();
+        }
+
+        // Actualizar vistas previas de categorías
+        function updatePreviews() {
+            document.getElementById('followersCountPreview').textContent = fileCategories.followers.length;
+            document.getElementById('commentsCountPreview').textContent = fileCategories.comments.length;
+            document.getElementById('messagesCountPreview').textContent = fileCategories.messages.length;
+            document.getElementById('likesCountPreview').textContent = fileCategories.likes.length;
+        }
+
+        // Verificar si hay archivos listos
+        function checkFilesReady() {
+            const analyzeBtn = document.getElementById('analyzeBtn');
+            const uploadArea = document.getElementById('connectionsUpload');
+            
+            if (connectionsFiles.length > 0) {
+                analyzeBtn.disabled = false;
+                uploadArea.style.borderColor = '#2ecc71';
+                uploadArea.style.backgroundColor = 'rgba(46, 204, 113, 0.05)';
+                uploadArea.innerHTML = `
+                    <div class="upload-icon" style="color: #2ecc71;">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <p>${connectionsFiles.length} archivo(s) seleccionado(s)</p>
+                    <small>Haz clic o arrastra más archivos para añadirlos</small>
+                `;
+            } else {
+                analyzeBtn.disabled = true;
+            }
+        }
+
+        // Navegación entre pasos
+        function nextStep(step) {
+            if (step === 2) {
+                username = document.getElementById('username').value.trim();
+                if (!username) {
+                    showNotification('Por favor, ingresa tu nombre de usuario de Instagram', 'error');
+                    return;
+                }
+            }
+            
+            document.querySelector(`#step${currentStep}Content`).classList.remove('active');
+            document.querySelector(`#step${currentStep}`).classList.remove('active');
+            
+            currentStep = step;
+            
+            document.querySelector(`#step${currentStep}Content`).classList.add('active');
+            document.querySelector(`#step${currentStep}`).classList.add('active');
+            
+            if (step === 3) {
+                // Mostrar carga y ocultar resultados
+                document.getElementById('loadingIndicator').style.display = 'block';
+                document.getElementById('resultsSection').style.display = 'none';
+                
+                // Procesar datos con barra de progreso simulada
+                simulateProgress();
+            }
+            
+            updateProgressBar();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function prevStep(step) {
+            document.querySelector(`#step${currentStep}Content`).classList.remove('active');
+            document.querySelector(`#step${currentStep}`).classList.remove('active');
+            
+            currentStep = step;
+            
+            document.querySelector(`#step${currentStep}Content`).classList.add('active');
+            document.querySelector(`#step${currentStep}`).classList.add('active');
+            
+            updateProgressBar();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function updateProgressBar() {
+            const progressBar = document.getElementById('progressBar');
+            const totalSteps = 3;
+            const width = ((currentStep - 1) / (totalSteps - 1)) * 100;
+            progressBar.style.width = `${width}%`;
+            
+            // Marcar pasos anteriores como completados
+            for (let i = 1; i < currentStep; i++) {
+                document.getElementById(`step${i}`).classList.add('completed');
+            }
+            
+            // Asegurarse de que los pasos siguientes no estén marcados como completados
+            for (let i = currentStep; i <= totalSteps; i++) {
+                document.getElementById(`step${i}`).classList.remove('completed');
+            }
+        }
+
+        // Simular progreso de análisis
+        function simulateProgress() {
+            const progressText = document.getElementById('progressText');
+            let progress = 0;
+            
+            const interval = setInterval(() => {
+                progress += Math.random() * 10;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                    
+                    // Procesar datos reales
+                    analyzeData();
+                    
+                    // Ocultar carga y mostrar resultados
+                    setTimeout(() => {
+                        document.getElementById('loadingIndicator').style.display = 'none';
+                        document.getElementById('resultsSection').style.display = 'block';
+                        showNotification('Análisis completado con éxito', 'success');
+                    }, 500);
+                }
+                progressText.textContent = `Cargando ${Math.round(progress)}%`;
+            }, 200);
+        }
+
+        // Función para extraer usuarios de archivos JSON de Instagram
+        function extractUsers(data, fileName) {
+            const users = [];
+            
+            // Buscar recursivamente valores de usuario en la estructura JSON
+            function searchForUsers(obj, path = '') {
+                if (typeof obj !== 'object' || obj === null) return;
+                
+                // Si encontramos un campo que parece contener un nombre de usuario
+                if (obj.value && typeof obj.value === 'string' && obj.value.length > 0) {
+                    users.push(obj.value);
+                }
+                
+                if (obj.title && typeof obj.title === 'string' && obj.title.length > 0) {
+                    users.push(obj.title);
+                }
+                
+                // Para archivos de mensajes
+                if (obj.sender_name && typeof obj.sender_name === 'string') {
+                    users.push(obj.sender_name);
+                }
+                
+                if (obj.participants && Array.isArray(obj.participants)) {
+                    obj.participants.forEach(participant => {
+                        if (typeof participant === 'string') {
+                            users.push(participant);
+                        }
+                    });
+                }
+                
+                // Para archivos de comentarios y likes
+                if (obj.string_list_data && Array.isArray(obj.string_list_data)) {
+                    obj.string_list_data.forEach(item => {
+                        if (item.value && typeof item.value === 'string') {
+                            users.push(item.value);
+                        }
+                    });
+                }
+                
+                // Para archivos de seguidores y seguidos
+                if (obj.name && typeof obj.name === 'string') {
+                    users.push(obj.name);
+                }
+                
+                if (obj.username && typeof obj.username === 'string') {
+                    users.push(obj.username);
+                }
+                
+                // Buscar en arrays y objetos anidados
+                if (Array.isArray(obj)) {
+                    obj.forEach(item => searchForUsers(item, path + '[]'));
+                } else {
+                    Object.keys(obj).forEach(key => {
+                        searchForUsers(obj[key], path + '.' + key);
+                    });
+                }
+            }
+            
+            searchForUsers(data);
+            return [...new Set(users)]; // Eliminar duplicados
+        }
+
+        // Analizar datos de Instagram
+        function analyzeData() {
+            followers = [];
+            following = [];
+            let likes = [];
+            let comments = [];
+            let messages = [];
+            let stories = [];
+            
+            // Procesar archivos por categorías
+            fileCategories.followers.forEach(file => {
+                const users = extractUsers(file.data, file.name);
+                followers = [...followers, ...users];
+            });
+            
+            fileCategories.following.forEach(file => {
+                const users = extractUsers(file.data, file.name);
+                following = [...following, ...users];
+            });
+            
+            // Buscar solicitudes pendientes (si existen en los archivos)
+            pendingRequests = [];
+            fileCategories.followers.forEach(file => {
+                if (file.name.includes('pending') || file.data.pending_follow_requests) {
+                    const pendingUsers = extractUsers(file.data, file.name);
+                    pendingRequests = [...pendingRequests, ...pendingUsers];
+                }
+            });
+            
+            // Si no encontramos solicitudes pendientes en archivos específicos, intentar buscar en otros
+            if (pendingRequests.length === 0) {
+                fileCategories.other.forEach(file => {
+                    if (file.name.includes('pending') || file.name.includes('request')) {
+                        const pendingUsers = extractUsers(file.data, file.name);
+                        pendingRequests = [...pendingRequests, ...pendingUsers];
+                    }
+                });
+            }
+            
+            fileCategories.likes.forEach(file => {
+                const users = extractUsers(file.data, file.name);
+                likes = [...likes, ...users];
+            });
+            
+            fileCategories.comments.forEach(file => {
+                const users = extractUsers(file.data, file.name);
+                comments = [...comments, ...users];
+            });
+            
+            fileCategories.messages.forEach(file => {
+                const users = extractUsers(file.data, file.name);
+                messages = [...messages, ...users];
+            });
+            
+            fileCategories.stories.forEach(file => {
+                const users = extractUsers(file.data, file.name);
+                stories = [...stories, ...users];
+            });
+            
+            // Eliminar duplicados
+            followers = [...new Set(followers)];
+            following = [...new Set(following)];
+            pendingRequests = [...new Set(pendingRequests)];
+            likes = [...new Set(likes)];
+            comments = [...new Set(comments)];
+            messages = [...new Set(messages)];
+            stories = [...new Set(stories)];
+            
+            // Encontrar no seguidores (personas que sigues pero que no te siguen)
+            const followersSet = new Set(followers);
+            nonFollowers = following.filter(user => !followersSet.has(user));
+            
+            // Encontrar fans (personas que te siguen pero a quienes tú no sigues)
+            const followingSet = new Set(following);
+            fans = followers.filter(user => !followingSet.has(user));
+            
+            // Actualizar UI
+            document.getElementById('resultUsername').textContent = username;
+            document.getElementById('followingCount').textContent = following.length;
+            document.getElementById('followersCount').textContent = followers.length;
+            document.getElementById('nonFollowersCount').textContent = nonFollowers.length;
+            document.getElementById('fansCount').textContent = fans.length;
+            document.getElementById('pendingRequestsCount').textContent = pendingRequests.length;
+            
+            // Actualizar estadísticas avanzadas
+            document.getElementById('totalLikes').textContent = likes.length;
+            document.getElementById('totalComments').textContent = comments.length;
+            document.getElementById('totalShares').textContent = Math.floor(likes.length * 0.1); // Estimación
+            document.getElementById('totalViews').textContent = Math.floor(likes.length * 2.5); // Estimación
+            document.getElementById('totalConversations').textContent = fileCategories.messages.length;
+            document.getElementById('totalContacts').textContent = messages.length > 0 ? Math.floor(messages.length / 10) : 0; // Estimación
+            document.getElementById('totalMessagesSent').textContent = Math.floor(messages.length * 0.6); // Estimación
+            document.getElementById('totalMessagesReceived').textContent = Math.floor(messages.length * 0.4); // Estimación
+            
+            // Crear gráficos avanzados
+            createAdvancedCharts();
+            
+            // Mostrar no seguidores
+            displayNonFollowers();
+            
+            // Mostrar fans
+            displayFans();
+            
+            // Mostrar solicitudes pendientes
+            displayPendingRequests();
+            
+            // Configurar pestañas
+            setupTabs();
+            
+            // Analizar visitantes del perfil
+            analyzeProfileVisitors(likes, comments, messages, stories);
+        }
+
+        // Mostrar no seguidores
+        function displayNonFollowers() {
+            const nonFollowersList = document.getElementById('nonFollowersList');
+            nonFollowersList.innerHTML = '';
+            
+            if (nonFollowers.length > 0) {
+                nonFollowers.forEach(user => {
+                    const div = document.createElement('div');
+                    div.className = 'non-follower-item';
+                    div.innerHTML = `
+                        <a href="https://instagram.com/${user}" target="_blank" class="user-link">
+                            <div class="user-avatar">${user.charAt(0).toUpperCase()}</div>
+                            <div class="user-info">
+                                <span class="username">${user}</span>
+                                <span class="user-detail">Ver perfil</span>
+                            </div>
+                        </a>
+                    `;
+                    nonFollowersList.appendChild(div);
+                });
+            } else {
+                nonFollowersList.innerHTML = '<p class="no-results">¡Genial! Todos tus seguidores te siguen de vuelta.</p>';
+            }
+            
+            // Configurar exportación
+            document.getElementById('exportNonFollowersBtn').addEventListener('click', function() {
+                exportToCSV(nonFollowers, 'no_seguidores');
+            });
+        }
+
+        // Mostrar fans (te siguen pero tú no los sigues)
+        function displayFans() {
+            const fansList = document.getElementById('fansList');
+            fansList.innerHTML = '';
+            
+            if (fans.length > 0) {
+                fans.forEach(user => {
+                    const div = document.createElement('div');
+                    div.className = 'non-follower-item';
+                    div.innerHTML = `
+                        <a href="https://instagram.com/${user}" target="_blank" class="user-link">
+                            <div class="user-avatar">${user.charAt(0).toUpperCase()}</div>
+                            <div class="user-info">
+                                <span class="username">${user}</span>
+                                <span class="user-detail">Ver perfil</span>
+                            </div>
+                        </a>
+                    `;
+                    fansList.appendChild(div);
+                });
+            } else {
+                fansList.innerHTML = '<p class="no-results">No tienes fans (todos a quienes sigues también te siguen).</p>';
+            }
+            
+            // Configurar exportación
+            document.getElementById('exportFansBtn').addEventListener('click', function() {
+                exportToCSV(fans, 'fans');
+            });
+        }
+
+        // Mostrar solicitudes pendientes
+        function displayPendingRequests() {
+            const pendingRequestsList = document.getElementById('pendingRequestsList');
+            pendingRequestsList.innerHTML = '';
+            
+            if (pendingRequests.length > 0) {
+                pendingRequests.forEach(user => {
+                    const div = document.createElement('div');
+                    div.className = 'non-follower-item';
+                    div.innerHTML = `
+                        <a href="https://instagram.com/${user}" target="_blank" class="user-link">
+                            <div class="user-avatar">${user.charAt(0).toUpperCase()}</div>
+                            <div class="user-info">
+                                <span class="username">${user}</span>
+                                <span class="user-detail">Ver perfil</span>
+                            </div>
+                        </a>
+                    `;
+                    pendingRequestsList.appendChild(div);
+                });
+            } else {
+                pendingRequestsList.innerHTML = '<p class="no-results">No se encontraron solicitudes pendientes.</p>';
+            }
+            
+            // Configurar exportación
+            document.getElementById('exportPendingRequestsBtn').addEventListener('click', function() {
+                exportToCSV(pendingRequests, 'solicitudes_pendientes');
+            });
+        }
+
+        // Configurar pestañas
+        function setupTabs() {
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const tabId = tab.getAttribute('data-tab');
+                    
+                    // Desactivar todas las pestañas
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tabContents.forEach(tc => tc.classList.remove('active'));
+                    
+                    // Activar la pestaña seleccionada
+                    tab.classList.add('active');
+                    document.querySelector(`.tab-content[data-tab="${tabId}"]`).classList.add('active');
+                });
+            });
+        }
+
+        // Crear gráficos avanzados
+        function createAdvancedCharts() {
+            // Gráfico de uso de tiempo
+            const timeCtx = document.getElementById('timeUsageChart');
+            if (timeCtx) {
+                if (timeUsageChartInstance) {
+                    timeUsageChartInstance.destroy();
+                }
+                
+                timeUsageChartInstance = new Chart(timeCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Publicaciones', 'Historias', 'Mensajes', 'Explorar'],
+                        datasets: [{
+                            data: [30, 25, 20, 25],
+                            backgroundColor: ['#8a3ab9', '#bc2a8d', '#fccc63', '#405DE6']
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom'
+                            }
+                        }
+                    }
+                });
+            }
+            
+            // Gráfico de actividad por día
+            const activityCtx = document.getElementById('activityChart');
+            if (activityCtx) {
+                if (activityChartInstance) {
+                    activityChartInstance.destroy();
+                }
+                
+                activityChartInstance = new Chart(activityCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'],
+                        datasets: [{
+                            label: 'Interacciones',
+                            data: [12, 19, 8, 15, 6, 11, 14],
+                            backgroundColor: '#8a3ab9'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        // Analizar visitantes del perfil
+        function analyzeProfileVisitors(likes, comments, messages, stories) {
+            // Combinar todos los usuarios de los que tenemos datos
+            const allUsers = [...new Set([...followers, ...following, ...nonFollowers, ...fans, ...likes, ...comments, ...messages, ...stories])];
+            
+            // Simular datos de interacción (en una app real, esto vendría de los archivos JSON)
+            const interactions = simulateInteractions(allUsers, likes, comments, messages, stories);
+            
+            // Calcular puntuación de posible visita al perfil
+            profileVisitors = calculateVisitorScore(interactions);
+            
+            // Mostrar resultados
+            displayVisitorResults();
+        }
+
+        // Simular interacciones (en una app real, esto se obtendría de los archivos JSON)
+        function simulateInteractions(users, likes, comments, messages, stories) {
+            const interactions = [];
+            
+            users.forEach(user => {
+                // Simular diferentes tipos de interacciones con pesos diferentes
+                const userLikes = likes.filter(u => u === user).length;
+                const userComments = comments.filter(u => u === user).length;
+                const userMessages = messages.filter(u => u === user).length;
+                const userStories = stories.filter(u => u === user).length;
+                
+                // Fecha de última interacción (más reciente para algunos usuarios)
+                const lastInteractionDays = Math.floor(Math.random() * 30);
+                const lastInteraction = new Date();
+                lastInteraction.setDate(lastInteraction.getDate() - lastInteractionDays);
+                
+                interactions.push({
+                    username: user,
+                    likes: userLikes,
+                    comments: userComments,
+                    messages: userMessages,
+                    storyViews: userStories,
+                    lastInteraction
+                });
+            });
+            
+            return interactions;
+        }
+
+        // Calcular puntuación de posible visita al perfil
+        function calculateVisitorScore(interactions) {
+            return interactions.map(interaction => {
+                // Calcular puntuación basada en diferentes factores con diferentes pesos
+                let score = 0;
+                
+                // Peso de diferentes interacciones
+                score += interaction.likes * 1; // Cada like suma 1 punto
+                score += interaction.comments * 3; // Cada comentario suma 3 puntos
+                score += interaction.messages * 5; // Cada mensaje suma 5 puntos
+                score += interaction.storyViews * 0.5; // Cada visualización de story suma 0.5 puntos
+                
+                // Penalizar interacciones antiguas
+                const daysSinceInteraction = Math.floor((new Date() - interaction.lastInteraction) / (1000 * 60 * 60 * 24));
+                if (daysSinceInteraction > 7) {
+                    score *= 0.9; // Reducir 10% si la interacción es de hace más de una semana
+                }
+                if (daysSinceInteraction > 30) {
+                    score *= 0.7; // Reducir 30% si la interacción es de hace más de un mes
+                }
+                
+                // Añadir elemento aleatorio para simular imprevisibilidad
+                score *= (0.8 + Math.random() * 0.4);
+                
+                return {
+                    username: interaction.username,
+                    score: Math.round(score * 100) / 100,
+                    interactions: {
+                        likes: interaction.likes,
+                        comments: interaction.comments,
+                        messages: interaction.messages,
+                        storyViews: interaction.storyViews
+                    },
+                    lastInteraction: interaction.lastInteraction.toLocaleDateString()
+                };
+            }).sort((a, b) => b.score - a.score) // Ordenar por puntuación descendente
+              .slice(0, 15); // Mostrar solo los 15 primeros
+        }
+
+        // Mostrar resultados de visitantes
+        function displayVisitorResults() {
+            const visitorsList = document.getElementById('visitorsList');
+            visitorsList.innerHTML = '';
+            
+            if (profileVisitors.length > 0) {
+                profileVisitors.forEach(visitor => {
+                    const div = document.createElement('div');
+                    div.className = 'visitor-item';
+                    div.innerHTML = `
+                        <a href="https://instagram.com/${visitor.username}" target="_blank" class="user-link">
+                            <div class="user-avatar">${visitor.username.charAt(0).toUpperCase()}</div>
+                            <div class="user-info">
+                                <span class="username">${visitor.username}</span>
+                                <span class="user-detail">
+                                    Likes: ${visitor.interactions.likes} | 
+                                    Comentarios: ${visitor.interactions.comments} | 
+                                    Última interacción: ${visitor.lastInteraction}
+                                </span>
+                            </div>
+                        </a>
+                        <div class="visitor-score">${visitor.score}</div>
+                    `;
+                    visitorsList.appendChild(div);
+                });
+                
+                // Mostrar gráfico de interacciones
+                displayInteractionsChart();
+                
+                // Mostrar patrones de actividad
+                displayActivityPatterns();
+            } else {
+                visitorsList.innerHTML = '<p class="no-results">No se pudieron determinar posibles visitantes con los datos disponibles.</p>';
+            }
+        }
+
+        // Mostrar gráfico de interacciones
+        function displayInteractionsChart() {
+            const canvas = document.getElementById('interactionsChart');
+            if (!canvas) {
+                console.error('Canvas del gráfico de interacciones no encontrado');
+                return;
+            }
+            
+            // Destruir gráfico existente si hay uno
+            if (interactionsChartInstance) {
+                interactionsChartInstance.destroy();
+            }
+            
+            // Preparar datos para el gráfico
+            const topVisitors = profileVisitors.slice(0, 5);
+            const labels = topVisitors.map(v => v.username);
+            const scores = topVisitors.map(v => v.score);
+            
+            interactionsChartInstance = new Chart(canvas, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Puntuación de visita',
+                        data: scores,
+                        backgroundColor: '#8a3ab9',
+                        borderRadius: 5
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: 'Top 5 posibles visitantes de tu perfil'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Puntuación de visita'
+                            },
+                            grid: {
+                                display: false
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Mostrar patrones de actividad
+        function displayActivityPatterns() {
+            const activityPatterns = document.getElementById('activityPatterns');
+            activityPatterns.innerHTML = '';
+            
+            // Simular patrones de actividad (en una app real, esto se calcularía de los datos)
+            const patterns = [
+                {
+                    title: 'Horario pico de interacciones',
+                    description: 'La mayoría de tus interacciones ocurren entre las 16:00 y 20:00 horas.'
+                },
+                {
+                    title: 'Días de mayor actividad',
+                    description: 'Viernes y sábados son tus días con mayor número de interacciones.'
+                },
+                {
+                    title: 'Tipo de contenido más interactivo',
+                    description: 'Tus publicaciones con preguntas en la descripción generan un 40% más de comentarios.'
+                }
+            ];
+            
+            patterns.forEach(pattern => {
+                const patternDiv = document.createElement('div');
+                patternDiv.className = 'pattern-card';
+                patternDiv.innerHTML = `
+                    <h4>${pattern.title}</h4>
+                    <p>${pattern.description}</p>
+                `;
+                activityPatterns.appendChild(patternDiv);
+            });
+        }
+
+        // Exportar a CSV
+        function exportToCSV(data, type) {
+            if (data.length === 0) {
+                showNotification(`No hay ${type === 'no_seguidores' ? 'no seguidores' : type === 'fans' ? 'fans' : 'solicitudes pendientes'} para exportar.`, 'warning');
+                return;
+            }
+            
+            // Crear contenido CSV
+            let csvContent = "data:text/csv;charset=utf-8,Usuario\n";
+            data.forEach(user => {
+                csvContent += `${user}\n`;
+            });
+            
+            // Crear enlace de descarga
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", `${type}_${username}.csv`);
+            document.body.appendChild(link);
+            
+            // Simular clic para descargar
+            link.click();
+            document.body.removeChild(link);
+            showNotification('Archivo exportado con éxito', 'success');
+        }
+
+        // Mostrar sección de análisis
+        function showAnalysisSection() {
+            document.getElementById('analysis').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Mostrar notificación
+        function showNotification(message, type = 'info') {
+            // Crear elemento de notificación
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <div class="notification-content">
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+                    <span>${message}</span>
+                </div>
+            `;
+            
+            // Añadir al cuerpo del documento
+            document.body.appendChild(notification);
+            
+            // Mostrar con animación
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 10);
+            
+            // Ocultar después de 3 segundos
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+    </script>
 </body>
 </html>
