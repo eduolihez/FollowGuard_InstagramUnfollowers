@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía FollowGuard Orion - Análisis Completo de Instagram</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8a3ab9;
+            --primary-gradient: linear-gradient(135deg, #8a3ab9, #bc2a8d, #fccc63);
+            --secondary: #405DE6;
+            --light: #fafafa;
+            --dark: #262626;
+            --gray: #8e8e8e;
+            --light-gray: #dbdbdb;
+            --success: #2ecc71;
+            --warning: #f1c40f;
+            --danger: #e74c3c;
+            --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 20px 20px;
+            background: var(--primary-gradient);
+            color: white;
+        }
+
+        .header-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .logo i {
+            font-size: 2.2rem;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+            display: inline-block;
+        }
+
+        .Orion-badge {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7em;
+            margin-left: 10px;
+            vertical-align: middle;
+            font-weight: 500;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 100;
+        }
+
+        .main-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: var(--transition);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .nav-link i {
+            font-size: 0.9rem;
+        }
+
+        .guide-section {
+            padding: 40px;
+        }
+
+        .guide-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-description {
+            color: var(--gray);
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .guide-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .video-section {
+            margin-bottom: 50px;
+        }
+
+        .video-section h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .video-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 20px 0;
+        }
+
+        .video-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* Relación 16:9 */
+            overflow: hidden;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-info {
+            padding: 20px;
+        }
+
+        .video-info h4 {
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .video-info p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .main-tutorial {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            margin: 40px 0;
+        }
+
+        .main-tutorial-header {
+            padding: 20px;
+            background: var(--primary-gradient);
+            color: white;
+            text-align: center;
+        }
+
+        .main-tutorial-header h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .main-tutorial-content {
+            padding: 30px;
+        }
+
+        .main-video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* Relación 16:9 */
+            margin-bottom: 25px;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .main-video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .tutorial-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin: 25px 0;
+        }
+
+        .tutorial-step {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            background: var(--primary-gradient);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+            font-size: 1.2rem;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-content h4 {
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+
+        .step-content p {
+            color: var(--gray);
+        }
+
+        .note {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+            margin: 15px 0;
+        }
+
+        .disclaimer {
+            background-color: #fef9e7;
+            border-left: 4px solid var(--warning);
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 8px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .disclaimer-icon {
+            color: var(--warning);
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .disclaimer p {
+            margin: 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: var(--gray);
+            font-size: 0.9rem;
+            background: #f8f9fa;
+            margin-top: 40px;
+        }
+
+        .footer-content {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .footer-note {
+            margin-top: 15px;
+            font-size: 0.8rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                box-shadow: none;
+            }
+            
+            header {
+                padding: 20px 15px;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .main-nav {
+                display: none;
+                flex-direction: column;
+                gap: 10px;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                padding: 20px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                z-index: 99;
+            }
+            
+            .main-nav.active {
+                display: flex;
+            }
+            
+            .nav-link {
+                color: var(--dark);
+                justify-content: center;
+            }
+            
+            .nav-link.active {
+                background: var(--primary);
+                color: white;
+            }
+            
+            .guide-section {
+                padding: 30px 20px;
+            }
+            
+            .tutorial-step {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .video-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .disclaimer {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .guide-section h2 {
+                font-size: 1.6rem;
+            }
+            
+            .video-section h3 {
+                font-size: 1.3rem;
+            }
+            
+            .main-tutorial-header h3 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-shield-alt"></i>
+                    <h1>FollowGuard <span class="Orion-badge">Orion</span></h1>
+                </div>
+                <p>Guía completa de uso</p>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <nav class="main-nav" id="mainNav">
+                    <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Inicio</a>
+                    <a href="index.html#analysis" class="nav-link"><i class="fas fa-chart-pie"></i> Análisis</a>
+                    <a href="#" class="nav-link active"><i class="fas fa-book"></i> Guía</a>
+                    <a href="index.html#advanced-analysis" class="nav-link"><i class="fas fa-chart-line"></i> Estadísticas</a>
+                    <a href="index.html#profile-visitors" class="nav-link"><i class="fas fa-eye"></i> Visitantes</a>
+                </nav>
+            </div>
+        </header>
+
+        <section class="guide-section">
+            <h2><i class="fas fa-book"></i> Guía Completa de FollowGuard Orion</h2>
+            <p class="section-description">Aprende a utilizar todas las funcionalidades de nuestra herramienta de análisis de Instagram</p>
+            
+            <div class="guide-content">
+                <!-- Sección de videos de versiones -->
+                <div class="video-section">
+                    <h3><i class="fas fa-film"></i> Videos de Versiones</h3>
+                    <p>Conoce la evolución de FollowGuard Orion a través de nuestras versiones:</p>
+                    
+                    <div class="video-container">
+                        <div class="video-card">
+                            <div class="video-wrapper">
+                                <!-- Reemplaza VIDEO_ID_1 con el ID de tu primer video de YouTube -->
+                                <iframe src="https://www.youtube.com/embed/cFYigXH-jaU?si=6IUwlIH5SZQfU-ay" 
+                                        title="FollowGuard Orion - Versión 1.0" 
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                        allowfullscreen></iframe>
+                            </div>
+                            <div class="video-info">
+                                <h4>FollowGuard Orion - Versión 1.0</h4>
+                                <p>La primera versión de nuestra herramienta con las funcionalidades básicas de análisis de seguidores.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="video-card">
+                            <div class="video-wrapper">
+                                <!-- Reemplaza VIDEO_ID_2 con el ID de tu segundo video de YouTube -->
+                                <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" 
+                                        title="FollowGuard Orion - Versión 2.0" 
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                        allowfullscreen></iframe>
+                            </div>
+                            <div class="video-info">
+                                <h4>FollowGuard Orion - Versión 2.0</h4>
+                                <p>La nueva versión mejorada con análisis avanzado, estadísticas detalladas y detección de visitantes.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tutorial principal -->
+                <div class="main-tutorial">
+                    <div class="main-tutorial-header">
+                        <h3><i class="fas fa-graduation-cap"></i> Tutorial Completo</h3>
+                        <p>Aprende a usar FollowGuard Orion en solo 5 minutos</p>
+                    </div>
+                    
+                    <div class="main-tutorial-content">
+                        <div class="main-video-wrapper">
+                            <!-- Reemplaza TUTORIAL_VIDEO_ID con el ID de tu video tutorial de YouTube -->
+                            <iframe src="https://www.youtube.com/embed/TUTORIAL_VIDEO_ID" 
+                                    title="Tutorial Completo FollowGuard Orion" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen></iframe>
+                        </div>
+                        
+                        <h4>Guía paso a paso para usar FollowGuard Orion</h4>
+                        
+                        <div class="tutorial-steps">
+                            <div class="tutorial-step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>Exporta tus datos de Instagram</h4>
+                                    <p>Descarga tu información de Instagram desde la configuración de tu cuenta. Solo necesitas los archivos JSON que contienen información de seguidores, seguidos, likes y comentarios.</p>
+                                    <div class="note">
+                                        <p><strong>Nota:</strong> Instagram puede tardar hasta 48 horas en preparar tus datos. Recibirás un email con el enlace de descarga.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="tutorial-step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>Sube tus archivos a FollowGuard Orion</h4>
+                                    <p>En la sección de análisis, selecciona la carpeta donde descomprimiste tus datos de Instagram. La herramienta procesará automáticamente todos los archivos JSON.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="tutorial-step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>Analiza los resultados</h4>
+                                    <p>Descubre quién no te sigue de vuelta, identifica a tus seguidores más leales y analiza tus patrones de interacción. Exporta los resultados para un análisis más detallado.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="tutorial-step">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h4>Optimiza tu perfil</h4>
+                                    <p>Utiliza la información obtenida para mejorar tu estrategia en Instagram. Identifica contenido de mayor engagement y ajusta tu interacción con otros usuarios.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="disclaimer">
+                            <div class="disclaimer-icon">
+                                <i class="fas fa-info-circle"></i>
+                            </div>
+                            <p><strong>Nota importante:</strong> FollowGuard Orion procesa tus datos localmente en tu navegador. Tus datos de Instagram nunca se envían a nuestros servidores, garantizando tu privacidad y seguridad.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sección de videos adicionales -->
+                <div class="video-section">
+                    <h3><i class="fas fa-video"></i> Videos Adicionales</h3>
+                    <p>Más contenido para aprovechar al máximo FollowGuard Orion:</p>
+                    
+                    <div class="video-container">
+                        <div class="video-card">
+                            <div class="video-wrapper">
+                                <!-- Reemplaza VIDEO_ID_3 con el ID de tu video adicional de YouTube -->
+                                <iframe src="https://www.youtube.com/embed/VIDEO_ID_3" 
+                                        title="Cómo interpretar los resultados" 
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                        allowfullscreen></iframe>
+                            </div>
+                            <div class="video-info">
+                                <h4>Cómo interpretar los resultados</h4>
+                                <p>Aprende a entender y utilizar la información que FollowGuard Orion te proporciona.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="video-card">
+                            <div class="video-wrapper">
+                                <!-- Reemplaza VIDEO_ID_4 con el ID de tu video adicional de YouTube -->
+                                <iframe src="https://www.youtube.com/embed/VIDEO_ID_4" 
+                                        title="Tips para aumentar seguidores" 
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                        allowfullscreen></iframe>
+                            </div>
+                            <div class="video-info">
+                                <h4>Tips para aumentar seguidores</h4>
+                                <p>Estrategias efectivas para aumentar tu audiencia orgánica en Instagram.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="video-card">
+                            <div class="video-wrapper">
+                                <!-- Reemplaza VIDEO_ID_5 con el ID de tu video adicional de YouTube -->
+                                <iframe src="https://www.youtube.com/embed/VIDEO_ID_5" 
+                                        title="Gestión de relaciones" 
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                        allowfullscreen></iframe>
+                            </div>
+                            <div class="video-info">
+                                <h4>Gestión de relaciones</h4>
+                                <p>Cómo gestionar tus interacciones y relaciones con otros usuarios de Instagram.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-shield-alt"></i> FollowGuard Orion
+                </div>
+                <p>Herramienta de análisis avanzado para Instagram</p>
+                <p class="footer-note">⚠️ Los resultados de visitantes al perfil son estimaciones basadas en interacciones y pueden no ser exactos.</p>
+                <p class="footer-note">🔒 Tus datos se procesan localmente y nunca se envían a nuestros servidores.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Configuración del menú móvil
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuBtn = document.getElementById('mobileMenuBtn');
+            const mainNav = document.getElementById('mainNav');
+            
+            menuBtn.addEventListener('click', function() {
+                mainNav.classList.toggle('active');
+                
+                const icon = menuBtn.querySelector('i');
+                if (mainNav.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+            
+            // Cerrar menú al hacer clic en un enlace
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mainNav.classList.remove('active');
+                    menuBtn.querySelector('i').classList.remove('fa-times');
+                    menuBtn.querySelector('i').classList.add('fa-bars');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
