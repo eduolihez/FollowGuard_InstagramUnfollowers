@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FollowGuard - Selecciona tu Versión</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --ig-gradient: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            --ig-primary: #405DE6;
+            --ig-secondary: #5851DB;
+            --ig-purple: #833AB4;
+            --ig-pink: #C13584;
+            --ig-red: #E1306C;
+            --ig-orange: #FD1D1D;
+            --ig-yellow: #FCAF45;
+            --light: #fafafa;
+            --dark: #262626;
+            --gray: #8e8e8e;
+            --border: #dbdbdb;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            width: 100%;
+        }
+        
+        .logo {
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: var(--ig-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+        
+        .tagline {
+            color: var(--gray);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            line-height: 1.5;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 2.5rem 2rem;
+            width: 100%;
+            max-width: 420px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--border);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-header {
+            margin-bottom: 1.8rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .card-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            background: var(--ig-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .version-badge {
+            display: inline-block;
+            background: var(--ig-gradient);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .feature-list {
+            list-style: none;
+            margin: 2rem 0;
+            text-align: left;
+            flex-grow: 1;
+        }
+        
+        .feature-list li {
+            padding: 0.9rem 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+        }
+        
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .feature-icon {
+            margin-right: 1rem;
+            width: 26px;
+            height: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            flex-shrink: 0;
+            background: var(--ig-gradient);
+            color: white;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .btn {
+            display: block;
+            padding: 1rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+            flex: 1;
+        }
+        
+        .btn-primary {
+            background: var(--ig-gradient);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(220, 39, 67, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--dark);
+            border: 2px solid var(--border);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--light);
+            transform: translateY(-2px);
+        }
+        
+        .recommended {
+            margin-top: 1.2rem;
+            font-size: 0.95rem;
+            color: var(--gray);
+        }
+        
+        .orion .recommended {
+            color: var(--ig-purple);
+            font-weight: 600;
+        }
+        
+        footer {
+            margin-top: 3.5rem;
+            text-align: center;
+            color: var(--gray);
+            font-size: 0.9rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+            width: 100%;
+            max-width: 800px;
+        }
+        
+        @media (max-width: 900px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .card {
+                max-width: 100%;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">FollowGuard</div>
+        <p class="tagline">Protección avanzada para tus redes sociales</p>
+        <p class="subtitle">Selecciona la versión que mejor se adapte a tus necesidades. Ambas opciones son completamente gratuitas.</p>
+    </header>
+    
+    <div class="container">
+        <div class="card standard">
+            <div class="card-header">
+                <h2 class="card-title">FollowGuard Standard</h2>
+                <div class="version-badge">v1.0</div>
+            </div>
+            
+            <ul class="feature-list">
+                <li><span class="feature-icon"><i class="fas fa-check"></i></span> Análisis básico de seguidores y seguidos</li>
+                <li><span class="feature-icon"><i class="fas fa-check"></i></span> Detección de cuentas fantasma (sin publicaciones)</li>
+                <li><span class="feature-icon"><i class="fas fa-check"></i></span> Identificación de cuentas inactivas (sin actividad reciente)</li>
+                <li><span class="feature-icon"><i class="fas fa-check"></i></span> Estadísticas básicas de crecimiento</li>
+                <li><span class="feature-icon"><i class="fas fa-check"></i></span> Interfaz simple y minimalista</li>
+                <li><span class="feature-icon"><i class="fas fa-check"></i></span> Exportación de datos en formato CSV</li>
+            </ul>
+            
+            <div class="button-group">
+                <a href="https://github.com/tu-usuario/followguard-standard" class="btn btn-primary" target="_blank">
+                    <i class="fab fa-github"></i> Repositorio
+                </a>
+                <a href="https://tudominio.com/followguard-standard" class="btn btn-secondary" target="_blank">
+                    <i class="fas fa-globe"></i> Ver Web
+                </a>
+            </div>
+            <p class="recommended">Ideal para usuarios que necesitan funciones básicas</p>
+        </div>
+        
+        <div class="card orion">
+            <div class="card-header">
+                <h2 class="card-title">FollowGuard Orion</h2>
+                <div class="version-badge">v2.0</div>
+            </div>
+            
+            <ul class="feature-list">
+                <li><span class="feature-icon"><i class="fas fa-star"></i></span> Análisis avanzado de engagement y interacciones</li>
+                <li><span class="feature-icon"><i class="fas fa-star"></i></span> Detección inteligente de bots con machine learning</li>
+                <li><span class="feature-icon"><i class="fas fa-star"></i></span> Identificación de seguidores falsos (fake followers)</li>
+                <li><span class="feature-icon"><i class="fas fa-star"></i></span> Monitoreo en tiempo real de cambios en seguidores</li>
+                <li><span class="feature-icon"><i class="fas fa-star"></i></span> Análisis de mejores horas para publicar</li>
+                <li><span class="feature-icon"><i class="fas fa-star"></i></span> Comparativa de rendimiento con competidores</li>
+                <li><span class="feature-icon"><i class="fas fa-star"></i></span> Alertas personalizadas por email/notificaciones</li>
+                <li><span class="feature-icon"><i class="fas fa-star"></i></span> Dashboard interactivo con gráficos avanzados</li>
+            </ul>
+            
+            <div class="button-group">
+                <a href="https://github.com/tu-usuario/followguard-orion" class="btn btn-primary" target="_blank">
+                    <i class="fab fa-github"></i> Repositorio
+                </a>
+                <a href="https://tudominio.com/followguard-orion" class="btn btn-secondary" target="_blank">
+                    <i class="fas fa-globe"></i> Ver Web
+                </a>
+            </div>
+            <p class="recommended">Recomendado para creadores de contenido y empresas</p>
+        </div>
+    </div>
+    
+    <footer>
+        <p>© 2023 FollowGuard - Todas las versiones son completamente gratuitas</p>
+    </footer>
+</body>
+</html>
